@@ -13,6 +13,6 @@ import com.williamab.desafioapcoders.model.BasicEntity;
  * @param E a entidade que o repositório representa
  */
 @NoRepositoryBean
-public interface BasicRepository<E extends BasicEntity> extends JpaRepository<Long, E> {
+public interface BasicRepository<E extends BasicEntity> extends JpaRepository<E, Long> {
 
 }
