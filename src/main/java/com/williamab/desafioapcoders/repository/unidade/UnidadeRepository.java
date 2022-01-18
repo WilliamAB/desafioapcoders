@@ -14,11 +14,11 @@ import com.williamab.desafioapcoders.repository.BasicRepository;
 public interface UnidadeRepository extends BasicRepository<UnidadeEntity> {
 
 	/**
-	 * Busca uma unidade pelo código.
+	 * Busca uma unidade pela identificação.
 	 * 
-	 * @param codigo o código que será buscado
-	 * @return a entidade encontrada ou {@literal Optional#empty()}
+	 * @param identificacao a identificação que será buscada
+	 * @return a entidade encontrada
 	 */
-	Optional<UnidadeEntity> findByCodigo(Long codigo);
+	Optional<UnidadeEntity> findByIdentificacao(Long indentificacao);
 
 }
