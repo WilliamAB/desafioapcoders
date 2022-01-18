@@ -29,7 +29,7 @@ import com.williamab.desafioapcoders.model.unidade.UnidadeEntity;
 @Table(name = "inquilino")
 public class InquilinoEntity extends BasicEntity {
 
-	@Column(name = "codigo", nullable = false)
+	@Column(name = "codigo", nullable = false, unique = true)
 	private Long codigo;
 
 	@Column(name = "nome", nullable = false)

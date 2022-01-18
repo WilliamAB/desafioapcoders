@@ -20,7 +20,7 @@ import com.williamab.desafioapcoders.model.inquilino.InquilinoEntity;
 @Table(name = "unidade")
 public class UnidadeEntity extends BasicEntity {
 
-	@Column(name = "identificacao", nullable = false)
+	@Column(name = "identificacao", nullable = false, unique = true)
 	private String identificacao;
 
 	@ManyToOne(fetch = FetchType.EAGER)

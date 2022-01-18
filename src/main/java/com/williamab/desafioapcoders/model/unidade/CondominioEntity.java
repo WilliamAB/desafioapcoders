@@ -21,7 +21,7 @@ import com.williamab.desafioapcoders.model.BasicEntity;
 @Table(name = "condominio")
 public class CondominioEntity extends BasicEntity {
 
-	@Column(name = "codigo", nullable = false)
+	@Column(name = "codigo", nullable = false, unique = true)
 	private Long codigo;
 
 	@Column(name = "nome", nullable = false)

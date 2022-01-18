@@ -28,7 +28,7 @@ import com.williamab.desafioapcoders.model.unidade.UnidadeEntity;
 @Table(name = "despesa")
 public class DespesaEntity extends BasicEntity {
 
-	@Column(name = "codigo", nullable = false)
+	@Column(name = "codigo", nullable = false, unique = true)
 	private Long codigo;
 
 	@Column(name = "descricao", nullable = false)
