@@ -1,5 +1,7 @@
 package com.williamab.desafioapcoders.repository.unidade;
 
+import java.util.Optional;
+
 import com.williamab.desafioapcoders.model.unidade.UnidadeEntity;
 import com.williamab.desafioapcoders.repository.BasicRepository;
 
@@ -10,5 +12,13 @@ import com.williamab.desafioapcoders.repository.BasicRepository;
  *
  */
 public interface UnidadeRepository extends BasicRepository<UnidadeEntity> {
+
+	/**
+	 * Busca uma unidade pelo código.
+	 * 
+	 * @param codigo o código que será buscado
+	 * @return a entidade encontrada ou {@literal Optional#empty()}
+	 */
+	Optional<UnidadeEntity> findByCodigo(Long codigo);
 
 }

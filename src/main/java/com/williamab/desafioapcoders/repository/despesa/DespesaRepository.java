@@ -1,6 +1,7 @@
 package com.williamab.desafioapcoders.repository.despesa;
 
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,14 @@ import com.williamab.desafioapcoders.repository.BasicRepository;
  *
  */
 public interface DespesaRepository extends BasicRepository<DespesaEntity> {
+
+	/**
+	 * Busca uma despesa pelo código.
+	 * 
+	 * @param codigo o código que será buscado
+	 * @return a entidade encontrada ou {@literal Optional#empty()}
+	 */
+	Optional<DespesaEntity> findByCodigo(Long codigo);
 
 	/**
 	 * Busca as despesas da uma unidade.
