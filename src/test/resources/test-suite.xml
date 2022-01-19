@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="API Test Suite">
+	<test name="Testes de Repositórios" preserve-order="true">
+		<classes>
+			<class name="com.williamab.desafioapcoders.repository.inquilino.InquilinoRepositoryTest" />
+			<class name="com.williamab.desafioapcoders.repository.unidade.CondominioRepositoryTest" />
+			<class name="com.williamab.desafioapcoders.repository.unidade.UnidadeRepositoryTest" />
+			<class name="com.williamab.desafioapcoders.repository.despesa.TipoDespesaRepositoryTest" />
+			<class name="com.williamab.desafioapcoders.repository.despesa.DespesaRepositoryTest" />
+		</classes>
+	</test>
+</suite>
