@@ -1,12 +1,7 @@
 package com.williamab.desafioapcoders.model.unidade;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.williamab.desafioapcoders.model.BasicEntity;
@@ -29,9 +24,6 @@ public class CondominioEntity extends BasicEntity {
 
 	@Column(name = "endereco", nullable = false)
 	private String endereco;
-
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "condominio")
-	private List<UnidadeEntity> unidades;
 
 	public CondominioEntity() {
 	}
@@ -58,14 +50,6 @@ public class CondominioEntity extends BasicEntity {
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
-	}
-
-	public List<UnidadeEntity> getUnidades() {
-		return unidades;
-	}
-
-	public void setUnidades(List<UnidadeEntity> unidades) {
-		this.unidades = unidades;
 	}
 
 }
