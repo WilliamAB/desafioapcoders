@@ -19,6 +19,6 @@ public interface UnidadeRepository extends BasicRepository<UnidadeEntity> {
 	 * @param identificacao a identificação que será buscada
 	 * @return a entidade encontrada
 	 */
-	Optional<UnidadeEntity> findByIdentificacao(Long indentificacao);
+	Optional<UnidadeEntity> findByIdentificacao(String indentificacao);
 
 }
