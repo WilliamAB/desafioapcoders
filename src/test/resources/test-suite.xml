@@ -10,4 +10,13 @@
 			<class name="com.williamab.desafioapcoders.repository.despesa.DespesaRepositoryTest" />
 		</classes>
 	</test>
+	<test name="Testes de Serviços" preserve-order="true">
+		<classes>
+			<class name="com.williamab.desafioapcoders.service.inquilino.InquilinoServiceTest" />
+			<class name="com.williamab.desafioapcoders.service.unidade.CondominioServiceTest" />
+			<class name="com.williamab.desafioapcoders.service.unidade.UnidadeServiceTest" />
+			<class name="com.williamab.desafioapcoders.service.despesa.TipoDespesaServiceTest" />
+			<class name="com.williamab.desafioapcoders.service.despesa.DespesaServiceTest" />
+		</classes>
+	</test>
 </suite>
