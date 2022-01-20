@@ -92,8 +92,8 @@ public class UnidadeRepositoryTest extends AbstractTestNGSpringContextTests {
 		assertNotNull(unidade.getProprietario());
 		assertNotNull(unidade.getCondominio());
 		assertEquals(IDENTIFICACAO, unidade.getIdentificacao());
-		assertEquals(proprietario.getId(), unidade.getProprietario().getId());
-		assertEquals(condominio.getId(), unidade.getCondominio().getId());
+		assertEquals(InquilinoRepositoryTest.INQUILINO_CODIGO, unidade.getProprietario().getCodigo());
+		assertEquals(CondominioRepositoryTest.CONDOMINIO_CODIGO, unidade.getCondominio().getCodigo());
 	}
 
 	/**
