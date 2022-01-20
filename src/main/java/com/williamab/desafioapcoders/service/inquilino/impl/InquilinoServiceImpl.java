@@ -27,6 +27,7 @@ public class InquilinoServiceImpl implements InquilinoService {
 
 	@Override
 	public InquilinoEntity save(InquilinoEntity entity) {
+		validate(entity);
 		return repository.save(entity);
 	}
 
@@ -49,6 +50,26 @@ public class InquilinoServiceImpl implements InquilinoService {
 		}
 
 		repository.deleteById(optional.get().getId());
+	}
+
+	/**
+	 * Validações da entidade.
+	 * 
+	 * @param entity a entidade que será validada
+	 */
+	private void validate(InquilinoEntity entity) throws IllegalArgumentException {
+
+		// Se o id for nulo significa que é uma entidade nova
+		if (entity.getId() == null) {
+
+			Long codigo = entity.getCodigo();
+			Optional<InquilinoEntity> optional = repository.findByCodigo(codigo);
+
+			// Verifica se o código já existe
+			if (optional.isPresent()) {
+				throw new IllegalArgumentException("Inquilino código [%s] já existe!".formatted(codigo));
+			}
+		}
 	}
 
 }

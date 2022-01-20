@@ -27,6 +27,7 @@ public class TipoDespesaServiceImpl implements TipoDespesaService {
 
 	@Override
 	public TipoDespesaEntity save(TipoDespesaEntity entity) {
+		validate(entity);
 		return repository.save(entity);
 	}
 
@@ -49,6 +50,26 @@ public class TipoDespesaServiceImpl implements TipoDespesaService {
 		}
 
 		repository.deleteById(optional.get().getId());
+	}
+
+	/**
+	 * Validações da entidade.
+	 * 
+	 * @param entity a entidade que será validada
+	 */
+	private void validate(TipoDespesaEntity entity) throws IllegalArgumentException {
+
+		// Se o id for nulo significa que é uma entidade nova
+		if (entity.getId() == null) {
+
+			Long codigo = entity.getCodigo();
+			Optional<TipoDespesaEntity> optional = repository.findByCodigo(codigo);
+
+			// Verifica se o código já existe
+			if (optional.isPresent()) {
+				throw new IllegalArgumentException("Tipo de despesa código [%s] já existe!".formatted(codigo));
+			}
+		}
 	}
 
 }

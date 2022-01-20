@@ -27,6 +27,7 @@ public class CondominioServiceImpl implements CondominioService {
 
 	@Override
 	public CondominioEntity save(CondominioEntity entity) {
+		validate(entity);
 		return repository.save(entity);
 	}
 
@@ -49,6 +50,26 @@ public class CondominioServiceImpl implements CondominioService {
 		}
 
 		repository.deleteById(optional.get().getId());
+	}
+
+	/**
+	 * Validações da entidade.
+	 * 
+	 * @param entity a entidade que será validada
+	 */
+	private void validate(CondominioEntity entity) throws IllegalArgumentException {
+
+		// Se o id for nulo significa que é uma entidade nova
+		if (entity.getId() == null) {
+
+			Long codigo = entity.getCodigo();
+			Optional<CondominioEntity> optional = repository.findByCodigo(codigo);
+
+			// Verifica se o código já existe
+			if (optional.isPresent()) {
+				throw new IllegalArgumentException("Condomínio código [%s] já existe!".formatted(codigo));
+			}
+		}
 	}
 
 }

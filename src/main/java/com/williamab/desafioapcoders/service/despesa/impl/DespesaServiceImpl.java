@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import com.williamab.desafioapcoders.model.despesa.DespesaEntity;
 import com.williamab.desafioapcoders.model.unidade.UnidadeEntity;
 import com.williamab.desafioapcoders.repository.despesa.DespesaRepository;
-import com.williamab.desafioapcoders.repository.unidade.UnidadeRepository;
 import com.williamab.desafioapcoders.service.despesa.DespesaService;
+import com.williamab.desafioapcoders.service.unidade.UnidadeService;
 import com.williamab.desafioapcoders.util.APIUtils;
 
 /**
@@ -29,10 +29,11 @@ public class DespesaServiceImpl implements DespesaService {
 	private DespesaRepository repository;
 
 	@Autowired
-	private UnidadeRepository unidadeRepository;
+	private UnidadeService unidadeService;
 
 	@Override
 	public DespesaEntity save(DespesaEntity entity) {
+		validate(entity);
 		return repository.save(entity);
 	}
 
@@ -47,15 +48,14 @@ public class DespesaServiceImpl implements DespesaService {
 	}
 
 	@Override
-	public Page<DespesaEntity> findByUnidade(UnidadeEntity unidade, int page, int limit) {
-		Optional<UnidadeEntity> optional = unidadeRepository.findById(unidade.getId());
+	public Page<DespesaEntity> findByUnidade(String identificacao, int page, int limit) {
+		UnidadeEntity unidade = unidadeService.findByIdentificacao(identificacao);
 
-		if (optional.isEmpty()) {
-			throw new EntityNotFoundException(
-					"Unidade identificação [%s] não encontrada!".formatted(unidade.getIdentificacao()));
+		if (unidade == null) {
+			throw new EntityNotFoundException("Unidade identificação [%s] não encontrada!".formatted(identificacao));
 		}
 
-		return repository.findByUnidade(optional.get(), APIUtils.createPageable(page, limit));
+		return repository.findByUnidade(unidade, APIUtils.createPageable(page, limit));
 	}
 
 	@Override
@@ -73,6 +73,26 @@ public class DespesaServiceImpl implements DespesaService {
 		}
 
 		repository.deleteById(optional.get().getId());
+	}
+
+	/**
+	 * Validações da entidade.
+	 * 
+	 * @param entity a entidade que será validada
+	 */
+	private void validate(DespesaEntity entity) throws IllegalArgumentException {
+
+		// Se o id for nulo significa que é uma entidade nova
+		if (entity.getId() == null) {
+
+			Long codigo = entity.getCodigo();
+			Optional<DespesaEntity> optional = repository.findByCodigo(codigo);
+
+			// Verifica se o código já existe
+			if (optional.isPresent()) {
+				throw new IllegalArgumentException("Despesa código [%s] já existe!".formatted(codigo));
+			}
+		}
 	}
 
 }

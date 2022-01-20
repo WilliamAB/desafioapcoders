@@ -5,7 +5,6 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 
 import com.williamab.desafioapcoders.model.despesa.DespesaEntity;
-import com.williamab.desafioapcoders.model.unidade.UnidadeEntity;
 
 /**
  * Serviço de manutenção dos dados de {@link DespesaEntity}.
@@ -42,16 +41,16 @@ public interface DespesaService {
 	Page<DespesaEntity> findByPage(int page, int limit);
 
 	/**
-	 * Busca as entidades a partir de uma unidade, do número de uma página de
-	 * resultados e do limite de resultados que deve retornar. Limite máximo: 20. A
-	 * paginação começa em 0.
+	 * Busca as entidades a partir da identificação de uma unidade, do número de uma
+	 * página de resultados e do limite de resultados que deve retornar. Limite
+	 * máximo: 20. A paginação começa em 0.
 	 * 
-	 * @param unidade a unidade que deve ser filtrada
-	 * @param page    o número da página a ser buscada
-	 * @param limit   o limite de resultados
+	 * @param identificacao a identificação da unidade que deve ser filtrada
+	 * @param page          o número da página a ser buscada
+	 * @param limit         o limite de resultados
 	 * @return a página de resultado com as entidades
 	 */
-	Page<DespesaEntity> findByUnidade(UnidadeEntity unidade, int page, int limit);
+	Page<DespesaEntity> findByUnidade(String identificacao, int page, int limit);
 
 	/**
 	 * Busca as entidades que estão com fatura vencidade a partir do número de uma

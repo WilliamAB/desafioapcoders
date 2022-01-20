@@ -27,6 +27,7 @@ public class UnidadeServiceImpl implements UnidadeService {
 
 	@Override
 	public UnidadeEntity save(UnidadeEntity entity) {
+		validate(entity);
 		return repository.save(entity);
 	}
 
@@ -49,6 +50,26 @@ public class UnidadeServiceImpl implements UnidadeService {
 		}
 
 		repository.deleteById(optional.get().getId());
+	}
+
+	/**
+	 * Validações da entidade.
+	 * 
+	 * @param entity a entidade que será validada
+	 */
+	private void validate(UnidadeEntity entity) throws IllegalArgumentException {
+
+		// Se o id for nulo significa que é uma entidade nova
+		if (entity.getId() == null) {
+
+			String identificacao = entity.getIdentificacao();
+			Optional<UnidadeEntity> optional = repository.findByIdentificacao(identificacao);
+
+			// Verifica se o código já existe
+			if (optional.isPresent()) {
+				throw new IllegalArgumentException("Unidade identificação [%s] já existe!".formatted(identificacao));
+			}
+		}
 	}
 
 }
