@@ -39,8 +39,8 @@ public class UnidadeConverter extends BasicConverter<UnidadeEntity, UnidadeDTO> 
 	@Override
 	protected void convertFieldsFromEntityToDTO(UnidadeEntity entity, UnidadeDTO dto) {
 		dto.setIdentificacao(entity.getIdentificacao());
-		dto.setProprietarioId(entity.getProprietario().getId());
-		dto.setCondominioId(entity.getCondominio().getId());
+		dto.setProprietarioCodigo(entity.getProprietario().getCodigo());
+		dto.setCondominioCodigo(entity.getCondominio().getCodigo());
 	}
 
 	@Override
@@ -48,11 +48,11 @@ public class UnidadeConverter extends BasicConverter<UnidadeEntity, UnidadeDTO> 
 		entity.setIdentificacao(dto.getIdentificacao());
 
 		InquilinoEntity proprietario = new InquilinoEntity();
-		proprietario.setId(dto.getProprietarioId());
+		proprietario.setCodigo(dto.getProprietarioCodigo());
 		entity.setProprietario(proprietario);
 
 		CondominioEntity condominio = new CondominioEntity();
-		condominio.setId(dto.getCondominioId());
+		condominio.setCodigo(dto.getCondominioCodigo());
 		entity.setCondominio(condominio);
 	}
 

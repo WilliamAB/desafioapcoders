@@ -64,6 +64,17 @@ public interface DespesaService {
 	Page<DespesaEntity> findByFaturaVencida(int page, int limit);
 
 	/**
+	 * Busca as despesas utilizando filtros por unidade e fatura vencidade.
+	 * 
+	 * @param unidadeIdentificacao filtro por unidade
+	 * @param faturaVencida        filtro de fatura vencida
+	 * @param page                 o número da página a ser buscada
+	 * @param limit                o limite de resultados
+	 * @return a página de resultado com as entidades
+	 */
+	Page<DespesaEntity> findWithFilter(String unidadeIdentificacao, boolean faturaVencida, int page, int limit);
+
+	/**
 	 * Deleta uma entidade a partir do código.
 	 * 
 	 * @param codigo o código da entidade que será deletada

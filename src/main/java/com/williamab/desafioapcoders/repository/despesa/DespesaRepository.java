@@ -45,4 +45,15 @@ public interface DespesaRepository extends BasicRepository<DespesaEntity> {
 	 */
 	Page<DespesaEntity> findByVencimentoFaturaLessThan(Date data, Pageable pageable);
 
+	/**
+	 * Busca as despesas filtrando unidade e com o vencimento da fatura anterior a
+	 * data passada por parâmetro.
+	 * 
+	 * @param unidade  a unidade filtrada
+	 * @param date     a data filtrada
+	 * @param pageable as configurações da página de resultado
+	 * @return uma página com os resultados
+	 */
+	Page<DespesaEntity> findByUnidadeAndVencimentoFaturaLessThan(UnidadeEntity unidade, Date date, Pageable pageable);
+
 }

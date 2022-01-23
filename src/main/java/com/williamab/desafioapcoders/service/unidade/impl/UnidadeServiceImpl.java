@@ -8,8 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import com.williamab.desafioapcoders.model.inquilino.InquilinoEntity;
+import com.williamab.desafioapcoders.model.unidade.CondominioEntity;
 import com.williamab.desafioapcoders.model.unidade.UnidadeEntity;
 import com.williamab.desafioapcoders.repository.unidade.UnidadeRepository;
+import com.williamab.desafioapcoders.service.inquilino.InquilinoService;
+import com.williamab.desafioapcoders.service.unidade.CondominioService;
 import com.williamab.desafioapcoders.service.unidade.UnidadeService;
 import com.williamab.desafioapcoders.util.APIUtils;
 
@@ -25,9 +29,22 @@ public class UnidadeServiceImpl implements UnidadeService {
 	@Autowired
 	private UnidadeRepository repository;
 
+	@Autowired
+	private CondominioService condominioService;
+
+	@Autowired
+	private InquilinoService inquilinoService;
+
 	@Override
 	public UnidadeEntity save(UnidadeEntity entity) {
 		validate(entity);
+
+		CondominioEntity condominio = condominioService.findByCodigo(entity.getCondominio().getCodigo());
+		entity.setCondominio(condominio);
+
+		InquilinoEntity proprietario = inquilinoService.findByCodigo(entity.getProprietario().getCodigo());
+		entity.setProprietario(proprietario);
+
 		return repository.save(entity);
 	}
 
@@ -65,7 +82,7 @@ public class UnidadeServiceImpl implements UnidadeService {
 			String identificacao = entity.getIdentificacao();
 			Optional<UnidadeEntity> optional = repository.findByIdentificacao(identificacao);
 
-			// Verifica se o código já existe
+			// Verifica se a identificação já existe
 			if (optional.isPresent()) {
 				throw new IllegalArgumentException("Unidade identificação [%s] já existe!".formatted(identificacao));
 			}

@@ -24,7 +24,7 @@ public class DespesaDTO extends BasicDTO<DespesaDTO> {
 	private String descricao;
 
 	@NotNull(message = "Tipo de despesa deve ser informada!")
-	private Long tipoDespesaId;
+	private Long tipoDespesaCodigo;
 
 	@NotNull(message = "Valor deve ser informado!")
 	@Positive(message = "Valor deve ser maior que zero!")
@@ -38,7 +38,7 @@ public class DespesaDTO extends BasicDTO<DespesaDTO> {
 	private String statusPagamento;
 
 	@NotNull(message = "Unidade deve ser informada!")
-	private Long unidadeId;
+	private String unidadeIdentificacao;
 
 	public DespesaDTO() {
 	}
@@ -59,12 +59,12 @@ public class DespesaDTO extends BasicDTO<DespesaDTO> {
 		this.descricao = descricao;
 	}
 
-	public Long getTipoDespesaId() {
-		return tipoDespesaId;
+	public Long getTipoDespesaCodigo() {
+		return tipoDespesaCodigo;
 	}
 
-	public void setTipoDespesaId(Long tipoDespesaId) {
-		this.tipoDespesaId = tipoDespesaId;
+	public void setTipoDespesaCodigo(Long tipoDespesaCodigo) {
+		this.tipoDespesaCodigo = tipoDespesaCodigo;
 	}
 
 	public Double getValor() {
@@ -91,12 +91,12 @@ public class DespesaDTO extends BasicDTO<DespesaDTO> {
 		this.statusPagamento = statusPagamento;
 	}
 
-	public Long getUnidadeId() {
-		return unidadeId;
+	public String getUnidadeIdentificacao() {
+		return unidadeIdentificacao;
 	}
 
-	public void setUnidadeId(Long unidadeId) {
-		this.unidadeId = unidadeId;
+	public void setUnidadeIdentificacao(String unidadeId) {
+		this.unidadeIdentificacao = unidadeId;
 	}
 
 }

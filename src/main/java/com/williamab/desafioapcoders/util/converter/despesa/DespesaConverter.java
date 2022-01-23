@@ -44,8 +44,8 @@ public class DespesaConverter extends BasicConverter<DespesaEntity, DespesaDTO> 
 		dto.setValor(entity.getValor());
 		dto.setStatusPagamento(entity.getStatusPagamento().name());
 		dto.setVencimentoFatura(entity.getVencimentoFatura());
-		dto.setTipoDespesaId(entity.getTipoDespesa().getId());
-		dto.setUnidadeId(entity.getUnidade().getId());
+		dto.setTipoDespesaCodigo(entity.getTipoDespesa().getCodigo());
+		dto.setUnidadeIdentificacao(entity.getUnidade().getIdentificacao());
 	}
 
 	@Override
@@ -57,11 +57,11 @@ public class DespesaConverter extends BasicConverter<DespesaEntity, DespesaDTO> 
 		entity.setVencimentoFatura(dto.getVencimentoFatura());
 
 		TipoDespesaEntity tipoDespesa = new TipoDespesaEntity();
-		tipoDespesa.setId(dto.getTipoDespesaId());
+		tipoDespesa.setCodigo(dto.getTipoDespesaCodigo());
 		entity.setTipoDespesa(tipoDespesa);
 
 		UnidadeEntity unidade = new UnidadeEntity();
-		unidade.setId(dto.getUnidadeId());
+		unidade.setIdentificacao(dto.getUnidadeIdentificacao());
 		entity.setUnidade(unidade);
 	}
 

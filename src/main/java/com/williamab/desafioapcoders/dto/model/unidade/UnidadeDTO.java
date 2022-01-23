@@ -17,10 +17,10 @@ public class UnidadeDTO extends BasicDTO<UnidadeDTO> {
 	private String identificacao;
 
 	@NotNull(message = "Proprietário deve ser informado!")
-	private Long proprietarioId;
+	private Long proprietarioCodigo;
 
 	@NotNull(message = "Condomínio deve ser informado!")
-	private Long condominioId;
+	private Long condominioCodigo;
 
 	public UnidadeDTO() {
 	}
@@ -33,20 +33,20 @@ public class UnidadeDTO extends BasicDTO<UnidadeDTO> {
 		this.identificacao = identificacao;
 	}
 
-	public Long getProprietarioId() {
-		return proprietarioId;
+	public Long getProprietarioCodigo() {
+		return proprietarioCodigo;
 	}
 
-	public void setProprietarioId(Long proprietarioId) {
-		this.proprietarioId = proprietarioId;
+	public void setProprietarioCodigo(Long proprietarioCodigo) {
+		this.proprietarioCodigo = proprietarioCodigo;
 	}
 
-	public Long getCondominioId() {
-		return condominioId;
+	public Long getCondominioCodigo() {
+		return condominioCodigo;
 	}
 
-	public void setCondominioId(Long condominioId) {
-		this.condominioId = condominioId;
+	public void setCondominioCodigo(Long condominioCodigo) {
+		this.condominioCodigo = condominioCodigo;
 	}
 
 }
